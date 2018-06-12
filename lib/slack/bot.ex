@@ -113,12 +113,12 @@ defmodule Slack.Bot do
       ) do
     try do
       bot_handler.handle_close(reason, slack, process_state)
-      Logger.error(reason)
+      Logger.error("#{inspect reason}")
       {:reconnect, state}
     rescue
       e ->
         handle_exception(e)
-        Logger.error(reason)
+        Logger.error("#{inspect reason}")
         {:reconnect, state}
     end
   end
@@ -175,8 +175,10 @@ defmodule Slack.Bot do
     {:ok, %{state | slack: updated_slack, process_state: new_process_state}}
   end
 
-  def websocket_handle(_, _conn, state), do: {:ok, state}
-
+  def websocket_handle(_, _conn, state), do
+    Logger.error("lib/slack/bot.ex => websocket_handle(_, _conn, state)")
+    {:ok, state}
+  end
   defp rtm_list_to_map(list) do
     Enum.reduce(list, %{}, fn item, map ->
       Map.put(map, item.id, item)
