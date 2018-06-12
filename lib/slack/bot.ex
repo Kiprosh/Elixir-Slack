@@ -175,10 +175,8 @@ defmodule Slack.Bot do
     {:ok, %{state | slack: updated_slack, process_state: new_process_state}}
   end
 
-  def websocket_handle(_, _conn, state) do
-    Logger.error("lib/slack/bot.ex => websocket_handle(_, _conn, state)")
-    {:ok, state}
-  end
+  def websocket_handle(_, _conn, state), do: {:ok, state}
+  
   defp rtm_list_to_map(list) do
     Enum.reduce(list, %{}, fn item, map ->
       Map.put(map, item.id, item)
