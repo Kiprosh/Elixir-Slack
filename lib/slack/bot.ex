@@ -113,12 +113,12 @@ defmodule Slack.Bot do
       ) do
     try do
       bot_handler.handle_close(reason, slack, process_state)
-      Logger.error("#{inspect reason}")
+      Logger.error("try ===> #{inspect reason}")
       {:reconnect, state}
     rescue
       e ->
         handle_exception(e)
-        Logger.error("#{inspect reason}")
+        Logger.error(" catch ===>#{inspect reason}")
         {:reconnect, state}
     end
   end
