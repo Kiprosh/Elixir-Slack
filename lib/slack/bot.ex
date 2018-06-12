@@ -175,7 +175,7 @@ defmodule Slack.Bot do
     {:ok, %{state | slack: updated_slack, process_state: new_process_state}}
   end
 
-  def websocket_handle(_, _conn, state), do
+  def websocket_handle(_, _conn, state) do
     Logger.error("lib/slack/bot.ex => websocket_handle(_, _conn, state)")
     {:ok, state}
   end
