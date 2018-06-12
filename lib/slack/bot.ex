@@ -113,7 +113,7 @@ defmodule Slack.Bot do
       ) do
     try do
       bot_handler.handle_close(reason, slack, process_state)
-      Logger.error("try ===> #{inspect reason}")
+      # this is called when the token is deleted and revoke request to API is sent
       {:reconnect, state}
     rescue
       e ->
